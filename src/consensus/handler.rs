@@ -210,11 +210,7 @@ pub async fn run_consensus_handler(
                     };
 
                     // Store the synced value
-                    if let Err(e) = state
-                        .store
-                        .store_undecided_proposal(proposed_value.clone())
-                        .await
-                    {
+                    if let Err(e) = state.store_synced_proposal(proposed_value.clone()).await {
                         error!(%e, "Failed to store synced proposal");
                     }
 
@@ -269,8 +265,7 @@ pub async fn run_consensus_handler(
                 };
 
                 match state
-                    .store
-                    .get_undecided_proposal(height, proposal_round, value_id)
+                    .get_proposal_for_restreaming(height, proposal_round, value_id)
                     .await
                 {
                     Ok(Some(proposal)) => {
