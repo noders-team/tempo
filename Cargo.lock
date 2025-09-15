@@ -12587,6 +12587,7 @@ dependencies = [
  "commonware-codec",
  "commonware-utils",
  "const-hex",
+ "humantime-serde",
  "indexmap 2.11.1",
  "serde",
  "tempo-commonware-node-cryptography",
